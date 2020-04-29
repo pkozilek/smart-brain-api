@@ -12,13 +12,24 @@ const app = express();
 const db = knex({
     client: 'pg',
     connection: {
-        host : '127.0.0.1',
-        port: 5432,
-        user : 'postgres',
-        password : 'postgres',
-        database : 'smartbrain'
+        connectString : process.env.DATABASE_URL,
+        ssl: true
     }
 });
+
+
+// dev db
+// const db = knex({
+//     client: 'pg',
+//     connection: {
+//         host : 'postgresql-flexible-42647',
+//         port: 5432,
+//         user : 'postgres',
+//         password : 'postgres',
+//         database : 'smartbrain'
+//     }
+// });
+
 
 app.use(express.json());
 app.use(cors())
